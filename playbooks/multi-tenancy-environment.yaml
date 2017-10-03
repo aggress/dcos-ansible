@@ -1,0 +1,26 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+  - name: Install dcos enterprise cli plugin
+    shell: dcos package install --cli dcos-enterprise-cli --yes
+
+  - name: Create test user cory
+    shell: dcos security org users create -d cory -p password cory
+
+  - name: Create test group prod-a-group
+    shell: dcos security org groups create prod-a-group
+
+  - name: Add user to group
+    shell: dcos security org groups add_user prod-a-group cory
+
+  - name: Create Service group resource file
+    shell: echo '{"id":"/prod-a"}' > group.json
+
+  - name: Create Service group using resource file
+    shell: dcos marathon group add group.json
+
+  - name: Install HDFS service as Superuser
+    shell: dcos package install hdfs --yes
+
+  

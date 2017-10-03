@@ -1,15 +1,15 @@
 - hosts: dcos-cluster
-  remote_user: centos
+  remote_user: ec2-user
   become: false
 
   tasks:
   - name: Fetch DC/OS installer from Bootstrap Node
     get_url:
-      url: http://{{ hostvars[groups['bootstrap'][0]].ansible_eth0['ipv4']['address'] }}/dcos_install.sh
+      url: http://172.31.15.208/dcos_install.sh
       dest: /tmp/dcos
 
 - hosts: masters
-  remote_user: centos
+  remote_user: ec2-user
   become: true
 
   tasks:
@@ -19,7 +19,7 @@
     shell: bash /tmp/dcos/dcos_install.sh master
 
 - hosts: public-agents
-  remote_user: centos
+  remote_user: ec2-user
   become: true
 
   tasks:
@@ -29,7 +29,7 @@
     shell: bash /tmp/dcos/dcos_install.sh slave_public
 
 - hosts: private-agents
-  remote_user: centos
+  remote_user: ec2-user
   become: true
 
   tasks:

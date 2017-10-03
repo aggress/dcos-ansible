@@ -1,0 +1,19 @@
+---
+- hosts: ["private-agents","public-agents"]
+  remote_user: ec2-user
+  become: true
+  tasks:
+  - name: Create directory for certificate
+    file:
+      path: /etc/docker/certs.d/master.mesos:5000
+      state: directory
+
+  - name: Download the certificate
+    get_url:
+      url: http://master.mesos:8082/certs/domain.crt
+      dest: /etc/docker/certs.d/master.mesos:5000/ca.crt
+
+  - name: Reload Docker
+    systemd:
+      name: docker
+      state: reloaded

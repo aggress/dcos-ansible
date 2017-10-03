@@ -1,7 +1,7 @@
 ---
 - name: Top level play for the entire installation
   hosts: all
-  user: centos
+  user: ec2-user
 
 - include: playbooks/selinux.yaml
 - include: playbooks/groups.yaml

@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: centos
+  remote_user: ec2-user
   become: true
 
   tasks:
@@ -9,7 +9,7 @@
       name: docker
       file: docker
       description: Official Docker yum repo
-      baseurl: https://yum.dockerproject.org/repo/main/centos/$releasever/
+      baseurl: https://yum.dockerproject.org/repo/main/centos/7/
       gpgcheck: yes
       gpgkey: https://yum.dockerproject.org/gpg
 

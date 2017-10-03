@@ -1,9 +1,13 @@
 ---
 - hosts: all
-  remote_user: centos
+  remote_user: ec2-user
   become: true
-
   tasks:
+    
+  - name: Install EPEL
+    shell: rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  
   - name: Install utility dependencies
     yum:
-      name: tar, xz, unzip, curl, ipset, docker-python
+      name: tar, xz, unzip, curl, ipset, python-pip
+

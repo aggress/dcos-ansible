@@ -1,14 +1,18 @@
 [bootstrap]
-# Insert IP/Hostname of bootstrap node here
+34.253.203.216
 
 [masters]
-# Insert IP/Hostname of master nodes here
+34.253.210.102
 
 [public-agents]
-# Insert IP/Hostname of public agent nodes here
+54.154.141.140
 
 [private-agents]
-# Insert IP/Hostname of private agent nodes here
+54.194.200.123
+54.194.208.195
+54.229.84.130
+54.229.160.108
+176.34.155.77
 
 [dcos-cluster:children]
 masters
